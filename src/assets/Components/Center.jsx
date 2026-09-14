@@ -1,0 +1,26 @@
+import React from 'react'
+import WeatherCard from "./WeatherCard"
+
+const Center = (props) => {
+    const weatherData = props.weatherData
+
+    return (
+        <div>
+            {(!weatherData
+                ? <p>Loading...</p>
+                : <WeatherCard
+                    weatherData={weatherData}
+                    location={props.location}
+                />
+
+                // Object.entries(weatherData).map(([key, value]) => (
+                //     <p key={key}>
+                //         {key}: {value}
+                //     </p>
+                // ))
+            )}
+        </div>
+    )
+}
+
+export default Center
