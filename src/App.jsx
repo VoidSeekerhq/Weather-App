@@ -5,7 +5,7 @@ import './App.css'
 
 function App() {
 
-  const [location, setLocation] = useState({name: "", latitude: Number(21.7), longitude: Number(72.97)})
+  const [location, setLocation] = useState({name: "Bharuch, GJ, India", latitude: Number(21.7), longitude: Number(72.97)})
   const [weatherData, setWeatherData] = useState(null)
 
   useEffect(() => {

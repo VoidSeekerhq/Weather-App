@@ -5,7 +5,7 @@ const Center = (props) => {
     const weatherData = props.weatherData
 
     return (
-        <div>
+        <div className='p-4'>
             {(!weatherData
                 ? <p>Loading...</p>
                 : <WeatherCard

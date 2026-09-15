@@ -42,19 +42,21 @@ const Header = (props) => {
 
 
     return (
-        <div>
-            <h1 className="logo">
+        <div className='flex flex-row bg-gray-100 w-dvw p-4 justify-between items-center'>
+            <h1 className="logo text-2xl font-medium">
                 Weather App
             </h1>
 
-            <div className="searchbar">
+            <div className="searchbar flex flex-row items-center justify-center bg-gray-300 rounded-full p-1 border border-gray-400">
                 <input
+                    className='w-60 hover:cursor-pointer rounded-full focus: outline-0'
                     type="text"
+                    placeholder='Search Location...'
                     onChange={(e) => setSearch(e.target.value)}
                     value={search}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
-                            props.setLocation(search)
+                            props.setLocation(searchsugg[0])
                             setSearch("")
                         }
                     }}
@@ -62,10 +64,10 @@ const Header = (props) => {
             </div>
 
             {search == ""
-                ? ""
-                : <div className="search-sugg">
+                ? <div className="search-sugg absolute right-4 top-13 bg-gray-100 border border-gray-400 rounded-xl w-62 shadow-xl shadow-gray-300 max-h-60 overflow-x-auto opacity-0 transition duration-200"></div>
+                : <div className="search-sugg absolute right-4 top-13 bg-gray-100 border border-gray-400 rounded-xl w-62 shadow-xl shadow-gray-300 max-h-60 overflow-x-auto">
                     {searchsugg.map((city, index) => (
-                        <div
+                        <div className='p-2 rounded-xl hover:bg-gray-200 transition-colors duration-200 text-gray-800'
                             key={index}
                             onClick={() => {
                                 props.setLocation({
