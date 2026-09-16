@@ -2,5 +2,30 @@
 @import "tailwindcss";
 
 :root {
+    --bg: #f8f9fb;
+    --primary-color: #307ff2;
+    --secondary-border: #ff9706;
+    --secondary-color1: rgba(255, 149, 0, 0.39);
+    --secondary-color2: rgba(255, 166, 0, 0.15);
+    --surface-color1: #ffffff;
+    --surface-color2: #f8f9fb;
+    --muted-text-color: #757b8c;
+    --border-color: #E5E7EB;
+    --color: #0d0d12;
+    --hover: #F9FAFB;
+    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
     font-family: 'Roboto', sans-serif;
+}
+
+body.dark {
+    --bg: #161a1b;
+    --primary-color: #307ff2;
+    --secondary-border: #ff9706;
+    --surface-color1: #232325;
+    --surface-color2: #2d3132;
+    --muted-text-color: #848587;
+    --border-color: #273243;
+    --hover: rgba(255,255,255,0.03);
+    --box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.4);
+    --color: #ffffff;
 }
