@@ -54,7 +54,7 @@ const Header = (props) => {
 
 
     return (
-        <div className='flex flex-row bg-(--surface-color1) w-dvw p-4 justify-between items-center border-b border-(--border-color) shadow-(--box-shadow) transition-colors duration-200 ease-linear'>
+        <div className='flex flex-row bg-(--surface-color1) w-dvw p-4 justify-between items-center border-b border-(--border-color) shadow-(--box-shadow) transition-colors duration-200 ease-linear sticky top-0 left-0 z-10'>
             <h1 className="logo text-2xl font-medium text-(--color) transition-colors duration-200 ease-linear">
                 Weather App
             </h1>

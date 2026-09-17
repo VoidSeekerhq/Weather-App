@@ -5,12 +5,13 @@ const Center = (props) => {
     const weatherData = props.weatherData
 
     return (
-        <div className='p-4'>
+        <div className='p-4 overflow-y-auto'>
             {(!weatherData
                 ? <p>Loading...</p>
                 : <WeatherCard
                     weatherData={weatherData}
                     location={props.location}
+                    weatherCodes={props.weatherCodes}
                 />
 
                 // Object.entries(weatherData).map(([key, value]) => (
