@@ -82,7 +82,7 @@ const Header = (props) => {
                             if (e.key === "Enter" && searchsugg.length > 0) {
 
                                 props.setLocation({
-                                    name: searchsugg[0].formatted,
+                                    formatted: searchsugg[0].formatted,
                                     latitude: Number(searchsugg[0].latitude),
                                     longitude: Number(searchsugg[0].longitude)
                                 });

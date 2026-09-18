@@ -1,170 +1,209 @@
-import { useState, useEffect, useRef, useContext } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Header from './assets/Components/Header.jsx'
 import Center from './assets/Components/Center.jsx'
 import './App.css'
 import { getIcon } from './utils/WeatherIcons.js'
+import { useWeather } from './context/WeatherContext.jsx'
 
 function App() {
 
   const [location, setLocation] = useState({ formatted: "Bharuch, GJ, India", latitude: Number(21.7), longitude: Number(72.97) })
-  const [weatherData, setWeatherData] = useState(null)
+  const { weatherData, setWeatherData } = useWeather();
   const [theme, setTheme] = useState("light")
 
   const weatherCodes = {
 
-  // Clear
-  0: {
-    weather: "Clear Sky",
-    icon: getIcon("day_clear")
-  },
+    // Clear
+    0: {
+      weather: "Clear Sky",
 
-  // Partly Cloudy
-  1: {
-    weather: "Mainly Clear",
-    icon: getIcon("day_partial_cloud")
-  },
+      icon: getIcon("day_clear"),
+      dayIcon: getIcon("day_clear"),
 
-  2: {
-    weather: "Partly Cloudy",
-    icon: getIcon("day_partial_cloud")
-  },
+      nightIcon: getIcon(
+        "night_half_moon_clear"
+      )
+    },
 
-  // Overcast
-  3: {
-    weather: "Overcast",
-    icon: getIcon("overcast")
-  },
+    // Partly Cloudy
+    1: {
+      weather: "Mainly Clear",
 
-  // Fog
-  45: {
-    weather: "Fog",
-    icon: getIcon("fog")
-  },
+      icon: getIcon(
+        "day_partial_cloud"
+      ),
+      dayIcon: getIcon(
+        "day_partial_cloud"
+      ),
 
-  48: {
-    weather: "Depositing Rime Fog",
-    icon: getIcon("mist")
-  },
+      nightIcon: getIcon(
+        "night_half_moon_partial_cloud"
+      )
+    },
 
-  // Drizzle
-  51: {
-    weather: "Light Drizzle",
-    icon: getIcon("day_rain")
-  },
+    2: {
+      weather: "Partly Cloudy",
+      icon: getIcon("day_partial_cloud")
+    },
 
-  53: {
-    weather: "Moderate Drizzle",
-    icon: getIcon("day_rain")
-  },
+    // Overcast
+    3: {
+      weather: "Overcast",
+      icon: getIcon("overcast")
+    },
 
-  55: {
-    weather: "Dense Drizzle",
-    icon: getIcon("rain")
-  },
+    // Fog
+    45: {
+      weather: "Fog",
+      icon: getIcon("fog")
+    },
 
-  // Freezing Drizzle
-  56: {
-    weather: "Light Freezing Drizzle",
-    icon: getIcon("sleet")
-  },
+    48: {
+      weather: "Depositing Rime Fog",
+      icon: getIcon("mist")
+    },
 
-  57: {
-    weather: "Dense Freezing Drizzle",
-    icon: getIcon("sleet")
-  },
+    // Drizzle
+    51: {
+      weather: "Light Drizzle",
+      icon: getIcon("day_rain")
+    },
 
-  // Rain
-  61: {
-    weather: "Slight Rain",
-    icon: getIcon("day_rain")
-  },
+    53: {
+      weather: "Moderate Drizzle",
+      icon: getIcon("day_rain")
+    },
 
-  63: {
-    weather: "Moderate Rain",
-    icon: getIcon("rain")
-  },
+    55: {
+      weather: "Dense Drizzle",
+      icon: getIcon("rain")
+    },
 
-  65: {
-    weather: "Heavy Rain",
-    icon: getIcon("angry_clouds")
-  },
+    // Freezing Drizzle
+    56: {
+      weather: "Light Freezing Drizzle",
+      icon: getIcon("sleet")
+    },
 
-  // Freezing Rain
-  66: {
-    weather: "Light Freezing Rain",
-    icon: getIcon("sleet")
-  },
+    57: {
+      weather: "Dense Freezing Drizzle",
+      icon: getIcon("sleet")
+    },
 
-  67: {
-    weather: "Heavy Freezing Rain",
-    icon: getIcon("sleet")
-  },
+    // Rain
+    61: {
+      weather: "Slight Rain",
 
-  // Snow
-  71: {
-    weather: "Slight Snowfall",
-    icon: getIcon("day_snow")
-  },
+      icon: getIcon("day_rain"),
+      dayIcon: getIcon("day_rain"),
 
-  73: {
-    weather: "Moderate Snowfall",
-    icon: getIcon("snow")
-  },
+      nightIcon: getIcon(
+        "night_half_moon_rain"
+      )
+    },
 
-  75: {
-    weather: "Heavy Snowfall",
-    icon: getIcon("snow")
-  },
+    63: {
+      weather: "Moderate Rain",
+      icon: getIcon("rain")
+    },
 
-  77: {
-    weather: "Snow Grains",
-    icon: getIcon("snow")
-  },
+    65: {
+      weather: "Heavy Rain",
+      icon: getIcon("angry_clouds")
+    },
 
-  // Rain Showers
-  80: {
-    weather: "Slight Rain Showers",
-    icon: getIcon("day_rain")
-  },
+    // Freezing Rain
+    66: {
+      weather: "Light Freezing Rain",
+      icon: getIcon("sleet")
+    },
 
-  81: {
-    weather: "Moderate Rain Showers",
-    icon: getIcon("rain")
-  },
+    67: {
+      weather: "Heavy Freezing Rain",
+      icon: getIcon("sleet")
+    },
 
-  82: {
-    weather: "Violent Rain Showers",
-    icon: getIcon("angry_clouds")
-  },
+    // Snow
+    71: {
+      weather: "Snow",
 
-  // Snow Showers
-  85: {
-    weather: "Slight Snow Showers",
-    icon: getIcon("day_snow")
-  },
+      icon: getIcon("day_snow"),
+      dayIcon: getIcon("day_snow"),
 
-  86: {
-    weather: "Heavy Snow Showers",
-    icon: getIcon("snow")
-  },
+      nightIcon: getIcon(
+        "night_half_moon_snow"
+      )
+    },
 
-  // Thunderstorm
-  95: {
-    weather: "Thunderstorm",
-    icon: getIcon("thunder")
-  },
+    73: {
+      weather: "Moderate Snowfall",
+      icon: getIcon("snow")
+    },
 
-  96: {
-    weather: "Thunderstorm With Hail",
-    icon: getIcon("rain_thunder")
-  },
+    75: {
+      weather: "Heavy Snowfall",
+      icon: getIcon("snow")
+    },
 
-  99: {
-    weather: "Thunderstorm With Heavy Hail",
-    icon: getIcon("rain_thunder")
-  }
+    77: {
+      weather: "Snow Grains",
+      icon: getIcon("snow")
+    },
 
-};
+    // Rain Showers
+    80: {
+      weather: "Slight Rain Showers",
+      icon: getIcon("day_rain")
+    },
+
+    81: {
+      weather: "Moderate Rain Showers",
+      icon: getIcon("rain")
+    },
+
+    82: {
+      weather: "Violent Rain Showers",
+      icon: getIcon("angry_clouds")
+    },
+
+    // Snow Showers
+    85: {
+      weather: "Slight Snow Showers",
+      icon: getIcon("day_snow")
+    },
+
+    86: {
+      weather: "Heavy Snow Showers",
+      icon: getIcon("snow")
+    },
+
+    // Thunderstorm
+    95: {
+      weather: "Thunderstorm",
+
+      icon: getIcon(
+        "day_rain_thunder"
+      ),
+      dayIcon: getIcon(
+        "day_rain_thunder"
+      ),
+
+      nightIcon: getIcon(
+        "night_half_moon_rain_thunder"
+      )
+    },
+
+    96: {
+      weather: "Thunderstorm With Hail",
+      icon: getIcon("rain_thunder")
+    },
+
+    99: {
+      weather: "Thunderstorm With Heavy Hail",
+      icon: getIcon("rain_thunder")
+    }
+
+  };
 
 
 
@@ -173,13 +212,10 @@ function App() {
       try {
         let response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,cloud_cover,pressure_msl,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,weather_code,precipitation_probability&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max,wind_speed_10m_max,wind_direction_10m_dominant&forecast_days=7&timezone=auto`)
 
-        // let response2 = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${import.meta.env.VITE_OPENWEATHER_KEY}`)
 
         let result = await response.json()
-        // let result2 = await response2.json()
 
         console.log(result)
-        // console.log("result2", result2)
 
         const data = {
           current: {
@@ -192,10 +228,6 @@ function App() {
             wind_speed: result.current.wind_speed_10m,
             wind_direction: result.current.wind_direction_10m,
             weather_code: result.current.weather_code,
-            // weather: result2.weather[0].main,
-            // weather_icon: result2.weather[0].icon,
-            // weather_icon: `https://openweathermap.org/img/wn/${result2.weather[0].icon}@4x.png`,
-            // weather_desc: result2.weather[0].description
           },
 
           today: {
@@ -253,7 +285,6 @@ function App() {
       />
 
       <Center
-        weatherData={weatherData}
         location={location}
         weatherCodes={weatherCodes}
       />

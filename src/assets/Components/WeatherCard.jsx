@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import CurrentCard from './CurrentCard';
 import ForecastCard from './ForecastCard';
+import { useWeather } from '../../context/WeatherContext';
 
-const CurrentWeatherCard = (props) => {
+const WeatherCard = (props) => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const weatherData = props.weatherData
+  const { weatherData } = useWeather();
 
   const degreesToDirection = () => {
     const directions = [
@@ -59,20 +60,16 @@ const CurrentWeatherCard = (props) => {
   }, []);
 
   return (
-    <div className='weather-card flex flex-col justify-center items-center bg-(--surface-color1) text-white w-sm p-3 rounded-xl border border-(--border-color) transition-colors duration-200 ease-linear shadow-(--box-shadow)'>
+    <div className='weather-card flex-none flex flex-col justify-center items-center bg-(--surface-color1) text-white w-sm p-3 rounded-2xl border border-(--border-color) transition-colors duration-200 ease-linear shadow-(--box-shadow)'>
 
       <CurrentCard
         location={props.location.formatted}
-        dayName={getDateTime().dayName}
-        date={getDateTime().date}
-        time={getDateTime().time}
-        temperature={weatherData.current.temperature}
+        getDateTime={getDateTime()}
         degreesToDirection={degreesToDirection()}
-        wind_speed={weatherData.current.wind_speed}
-        weather_code={weatherData.current.weather_code}
         weatherCodes={props.weatherCodes}
-        weatherIcon={props.weatherCodes[weatherData.current.weather_code].icon}
+        weatherIcon={props.weatherCodes[weatherData.current.weather_code]}
         weather={props.weatherCodes[weatherData.current.weather_code].weather}
+        isDayTime={props.isDayTime}
       />
 
       <ForecastCard
@@ -85,4 +82,4 @@ const CurrentWeatherCard = (props) => {
   )
 }
 
-export default CurrentWeatherCard
+export default WeatherCard

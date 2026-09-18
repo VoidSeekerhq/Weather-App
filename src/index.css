@@ -16,7 +16,12 @@
     --hover: #F9FAFB;
     --thumb: #0000005c;
     --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s linear,
+                border 0.2s linear,
+                color 0.2s linear,
+                box-shadow 0.2s linear;
     font-family: 'Roboto', sans-serif;
+    color: #0d0d12;
 }
 
 body.dark {
@@ -32,4 +37,5 @@ body.dark {
     --thumb: #ffffff45;
     --box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.4);
     --color: #ffffff;
+    color: #ffffff;
 }
