@@ -3,7 +3,7 @@
 
 :root {
     --bg: #f8f9fb;
-    --bg2: #00000021;
+    --bg2: #0000001c;
     --primary-color: #307ff2;
     --secondary-border: #ff9706;
     --secondary-color1: rgba(255, 149, 0, 0.39);
@@ -14,7 +14,7 @@
     --border-color: #E5E7EB;
     --color: #0d0d12;
     --hover: #F9FAFB;
-    --thumb: #0000005c;
+    --thumb: #0000003f;
     --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
     transition: background-color 0.2s linear,
                 border 0.2s linear,

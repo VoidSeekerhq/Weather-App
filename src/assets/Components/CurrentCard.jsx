@@ -1,6 +1,7 @@
 import React from 'react'
 import { useWeather } from '../../context/WeatherContext'
 
+
 const CurrentCard = (props) => {
   const { weatherData } = useWeather()
   const sunrise = weatherData.today.sunrise
@@ -58,7 +59,7 @@ const CurrentCard = (props) => {
           </span>
         </div>
       </div>
-    </>
+      </>
   )
 }
 

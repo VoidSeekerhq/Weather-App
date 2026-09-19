@@ -41,7 +41,7 @@ const Header = (props) => {
     }, [search]);
 
     const handleTheme = (e) => {
-        if(props.theme === "light") {
+        if (props.theme === "light") {
             props.setTheme("dark")
             document.body.classList.add("dark")
         } else {
@@ -54,14 +54,14 @@ const Header = (props) => {
 
 
     return (
-        <div className='flex flex-row bg-(--surface-color1) w-dvw p-4 justify-between items-center border-b border-(--border-color) shadow-(--box-shadow) transition-colors duration-200 ease-linear sticky top-0 left-0 z-10'>
-            <h1 className="logo text-2xl font-medium text-(--color) transition-colors duration-200 ease-linear">
-                Weather App
-            </h1>
+        <>
+            <div className='flex flex-col bg-(--surface-color1) w-dvw p-4 justify-between items-center border-b border-(--border-color) shadow-(--box-shadow) transition-colors duration-200 ease-linear gap-4 z-10 sticky top-0 left-0'>
+                <h1 className="logo text-2xl font-medium text-(--color) transition-colors duration-200 ease-linear">
+                    Weather App
+                </h1>
 
-            <div className='flex flex-row gap-4'>
                 <div
-                    className="theme-btn rounded-full border border-(--border-color) flex items-center justify-center p-1 transition-colors duration-200 ease-linear hover:bg-(--hover)"
+                    className="theme-btn absolute right-4 top-4 rounded-full border border-(--border-color) flex items-center justify-center p-1 transition-colors duration-200 ease-linear hover:bg-(--hover)"
                     onClick={handleTheme}
                 >
                     {props.theme === "light"
@@ -70,10 +70,13 @@ const Header = (props) => {
                     }
                 </div>
 
-                <div className="searchbar flex flex-row items-center justify-center bg-(--surface-color2) rounded-full p-1 border border-(--border-color) gap-2 transition-colors duration-200 ease-linear">
+            </div>
+
+            <div className='flex items-center justify-center p-2 mt-2'>
+                <div className="searchbar w-full flex flex-row items-center justify-center bg-(--surface-color2) rounded-full p-2 border border-(--border-color) gap-2 transition-colors duration-200 ease-linear relative">
                     <svg width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="var(--muted-text-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                     <input
-                        className='w-60 text-(--color) hover:cursor-pointer  focus:outline-0'
+                        className='w-full text-(--color) hover:cursor-pointer  focus:outline-0'
                         type="text"
                         placeholder='Search Location...'
                         onChange={(e) => setSearch(e.target.value)}
@@ -92,32 +95,32 @@ const Header = (props) => {
                             }
                         }}
                     />
+
+                    {search == ""
+                        ? <div className="search-sugg absolute bg-(--surface-color1) border border-(--border-color) rounded-xl w-0 shadow-(--box-shadow) max-h-60 overflow-x-auto opacity-0 transition-all duration-200 z-8 top-12"></div>
+                        : <div className="search-sugg absolute bg-(--surface-color1) border border-(--border-color) rounded-xl w-82 opacity-100 transition-all duration-200 shadow-(--box-shadow) max-h-60 overflow-x-auto cursor-pointer z-8 top-12">
+                            {searchsugg.map((city, index) => (
+                                <div className='p-2 rounded-xl hover:bg-(--hover) transition-colors duration-200 text-(--color)'
+                                    key={index}
+                                    onClick={() => {
+                                        props.setLocation({
+                                            formatted: city.formatted,
+                                            latitude: Number(city.latitude),
+                                            longitude: Number(city.longitude)
+                                        });
+
+                                        setSearch("");
+                                        setSearchsugg([]);
+                                    }}
+                                >
+                                    {city.formatted}
+                                </div>
+                            ))}
+                        </div>
+                    }
                 </div>
             </div>
-
-            {search == ""
-                ? <div className="search-sugg absolute right-4 top-13 bg-(--surface-color1) border border-(--border-color) rounded-xl w-0 shadow-(--box-shadow) max-h-60 overflow-x-auto opacity-0 transition-all duration-200"></div>
-                : <div className="search-sugg absolute right-4 top-13 bg-(--surface-color1) border border-(--border-color) rounded-xl w-69 opacity-100 transition-all duration-200 shadow-(--box-shadow) max-h-60 overflow-x-auto cursor-pointer">
-                    {searchsugg.map((city, index) => (
-                        <div className='p-2 rounded-xl hover:bg-(--hover) transition-colors duration-200 text-(--color)'
-                            key={index}
-                            onClick={() => {
-                                props.setLocation({
-                                    formatted: city.formatted,
-                                    latitude: Number(city.latitude),
-                                    longitude: Number(city.longitude)
-                                });
-
-                                setSearch("");
-                                setSearchsugg([]);
-                            }}
-                        >
-                            {city.formatted}
-                        </div>
-                    ))}
-                </div>
-            }
-        </div>
+        </>
     )
 }
 
