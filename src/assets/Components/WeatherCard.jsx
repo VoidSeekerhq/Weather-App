@@ -62,7 +62,7 @@ const WeatherCard = (props) => {
   }, []);
 
   return (
-    <div className='weather-card flex-none flex flex-col justify-center items-center bg-(--surface-color1) text-white w-full p-3 rounded-2xl border border-(--border-color) transition-colors duration-200 ease-linear shadow-(--box-shadow)'>
+    <div className='weather-card lg:w-sm flex-none flex flex-col justify-center items-center bg-(--surface-color1) text-white w-full p-3 rounded-2xl border border-(--border-color) transition-colors duration-200 ease-linear shadow-(--box-shadow)'>
 
       {(!weatherData
         ? <>

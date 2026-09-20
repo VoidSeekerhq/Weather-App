@@ -56,7 +56,7 @@ const HourlyForecast = (props) => {
             const day = isDayTime(item.time, weatherData.today.sunrise, weatherData.today.sunset);
 
             return (
-                <li
+                <div
                     className={`w-30 flex-none rounded-xl p-2 relative flex flex-col items-center justify-center transition-all duration-200 ease-linear
                         ${index === 0 ? "bg-linear-to-t from-10% from-[#3f72ffc0] via-50% via-[#4677ff85] to-100% to-[#5582ff12] text-white! border border-blue-400" : "bg-(--surface-color2)"}`}
                     key={index}
@@ -90,7 +90,7 @@ const HourlyForecast = (props) => {
                             )
                         }
                     </span>
-                </li>
+                </div>
             );
         })
     }
@@ -102,15 +102,15 @@ const HourlyForecast = (props) => {
 
 
     return (
-        <div className='flex-1 w-full h-fit bg-(--surface-color1) rounded-2xl border border-(--border-color) shadow-(--box-shadow) p-3 transition-colors duration-200 ease-linear flex flex-col items-center overflow-hidden'>
+        <div className='lg:min-w-52.5 w-full h-fit bg-(--surface-color1) rounded-2xl border border-(--border-color) shadow-(--box-shadow) p-3 transition-colors duration-200 ease-linear flex flex-col items-center overflow-hidden'>
 
             <span className='w-full text-(--color) font-medium text-lg mb-3 transition-colors duration-200 ease-linear'>
                 Upcoming Weather
             </span>
 
-            <ul className='flex flex-row gap-2 w-full h-fit overflow-x-auto items-center transition-colors duration-200 ease-linear rounded-xl'>
-                {weatherContent}
-            </ul>
+                <div className='w-full overflow-x-auto flex gap-2 h-fit items-center transition-colors duration-200 ease-linear rounded-xl'>
+                    {weatherContent}
+                </div>
         </div>
     );
 }

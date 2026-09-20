@@ -20,16 +20,18 @@ const Center = (props) => {
     };
 
     return (
-        <div className='p-2 w-full min-h-full flex flex-col justify-center gap-2'>
-            <WeatherCard
-                location={props.location}
-                weatherCodes={props.weatherCodes}
-                isDayTime={isDayTime}
-            />
-            <HourlyForecast
-                weatherCodes={props.weatherCodes}
-            />
-            <WindCompass />
+        <div className='p-2 w-dvw flex lg:flex-row flex-col gap-2 lg:relative'>
+                <WeatherCard
+                    location={props.location}
+                    weatherCodes={props.weatherCodes}
+                    isDayTime={isDayTime}
+                />
+
+                    <HourlyForecast
+                        weatherCodes={props.weatherCodes}
+                    />
+
+                    <WindCompass />
         </div>
     )
 }
