@@ -24,7 +24,7 @@ const WindCompass = () => {
 
     return (
 
-        <div className='lg:absolute lg:left-100 lg:top-63 lg:z-0 lg:w-71.5 flex flex-col items-center justify-center bg-(--surface-color1) rounded-2xl p-3 border border-(--border-color) transition-colors duration-200 ease-linear relative'>
+        <div className='lg:w-71.5 h-fit flex flex-col items-center justify-center bg-(--surface-color1) rounded-2xl p-3 border border-(--border-color) transition-colors duration-200 ease-linear relative'>
             <span className='w-full text-(--color) font-medium text-lg mb-3 transition-colors duration-200 ease-linear'>Wind</span>
 
             <div className='w-full h-55 flex flex-col justify-center items-center  relative z-10'>

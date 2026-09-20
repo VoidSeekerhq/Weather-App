@@ -102,13 +102,13 @@ const HourlyForecast = (props) => {
 
 
     return (
-        <div className='lg:min-w-52.5 w-full h-fit bg-(--surface-color1) rounded-2xl border border-(--border-color) shadow-(--box-shadow) p-3 transition-colors duration-200 ease-linear flex flex-col items-center overflow-hidden'>
+        <div className='lg:min-w-52.5 flex-1 w-full h-fit bg-(--surface-color1) rounded-2xl border border-(--border-color) shadow-(--box-shadow) p-3 transition-colors duration-200 ease-linear flex flex-col items-center overflow-hidden'>
 
             <span className='w-full text-(--color) font-medium text-lg mb-3 transition-colors duration-200 ease-linear'>
                 Upcoming Weather
             </span>
 
-                <div className='w-full overflow-x-auto flex gap-2 h-fit items-center transition-colors duration-200 ease-linear rounded-xl'>
+                <div className='max-w-full overflow-x-auto flex gap-2 h-fit items-center transition-colors duration-200 ease-linear rounded-xl'>
                     {weatherContent}
                 </div>
         </div>
