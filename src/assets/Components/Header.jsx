@@ -52,10 +52,59 @@ const Header = (props) => {
 
 
 
+    const getCurrentLocation = async () => {
+        if (!navigator.geolocation) {
+            console.log("Geolocation not supported");
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                try {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    const response = await fetch(
+                        `https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&apiKey=${import.meta.env.VITE_GEOAPIFY_KEY}`
+                    );
+
+                    const result = await response.json();
+
+                    props.setLocation({
+                        formatted:
+                            result.features?.[0]?.properties?.formatted ||
+                            "Current Location",
+                        latitude,
+                        longitude
+                    });
+
+                } catch (err) {
+                    console.log(err);
+                }
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+    };
+
+    useEffect(() => {
+        getCurrentLocation();
+    }, []);
+
+
 
     return (
-        <>
+        <div>
             <div className='flex flex-col bg-(--surface-color1) w-dvw p-4 justify-between items-center border-b border-(--border-color) shadow-(--box-shadow) transition-colors duration-200 ease-linear gap-4 z-10 sticky top-0 left-0'>
+
+                <button
+                    className="location-btn flex items-center justify-center absolute left-4 top-4 rounded-full border border-(--border-color) p-1 hover:bg-(--hover) transition-colors duration-200 ease-linear"
+                    onClick={getCurrentLocation}
+                >
+                    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M11 2a1 1 0 0 1 2 0v2.062A8.004 8.004 0 0 1 19.938 11H22a1 1 0 0 1 0 2h-2.062A8.004 8.004 0 0 1 13 19.938V22a1 1 0 0 1-2 0v-2.062A8.004 8.004 0 0 1 4.062 13H2a1 1 0 0 1 0-2h2.062A8.004 8.004 0 0 1 11 4.062V2zm7 10a6 6 0 1 0-12 0 6 6 0 0 0 12 0zm-3 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" fill="var(--color)"></path></g></svg>
+                </button>
+
                 <h1 className="logo text-2xl font-medium text-(--color) transition-colors duration-200 ease-linear">
                     Weather App
                 </h1>
@@ -73,7 +122,7 @@ const Header = (props) => {
             </div>
 
             <div className='flex items-center justify-center p-2 mt-2'>
-                <div className="searchbar w-full flex flex-row items-center justify-center bg-(--surface-color2) rounded-full p-2 border border-(--border-color) gap-2 transition-colors duration-200 ease-linear relative">
+                <div className="searchbar w-full flex flex-row items-center justify-center bg-(--bg2) rounded-full p-2 border border-(--border-color) gap-2 transition-colors duration-200 ease-linear relative">
                     <svg width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="var(--muted-text-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                     <input
                         className='w-full text-(--color) hover:cursor-pointer  focus:outline-0'
@@ -120,7 +169,7 @@ const Header = (props) => {
                     }
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
