@@ -41,9 +41,9 @@ const ForecastCard = (props) => {
 
     return (
         <>
-                    <span className='w-full text-(--color) font-medium text-lg my-3 transition-colors duration-200 ease-linear'>Forecast</span>
+                    <span className='w-full text-(--color) font-medium text-lg my-3 transition-colors duration-200 ease-linear'>Weekly Forecast</span>
 
-                    <nav className='w-full transition-colors duration-200 ease-linear bg-(--bg2) p-1 flex flex-row justify-around items-center rounded-full'>
+                    {/* <nav className='w-full transition-colors duration-200 ease-linear bg-(--bg2) p-1 flex flex-row justify-around items-center rounded-full'>
                         <div className="weekly-pill bg-(--surface-color1) py-2 rounded-full border-(--border-color) w-full text-center transition-colors duration-200 ease-linear cursor-pointer shadow-(--box-shadow)">
                             <span className='text-(--color) transition-colors duration-200 ease-linear'>Weekly</span>
                         </div>
@@ -51,9 +51,9 @@ const ForecastCard = (props) => {
                         <div className="monthly-pill w-full text-center transition-colors duration-200 ease-linear cursor-pointer">
                             <span className='text-(--muted-text-color) transition-colors duration-200 ease-linear'>Monthly</span>
                         </div>
-                    </nav>
+                    </nav> */}
 
-                    <ul className='text-sm w-full h-full flex flex-col transition-colors duration-200 ease-linear font-normal gap-5 my-5 mb-2'>
+                    <ul className='text-sm w-full h-full flex flex-col transition-colors duration-200 ease-linear font-normal gap-5 my-2 mb-2'>
 
                         {props.weekly.map((item) => {
                             const bar = getTempBar(item);
