@@ -70,7 +70,7 @@ const HourlyForecast = (props) => {
                         alt={props.weatherCodes[item.weather_code].weather}
                     />
 
-                    <span className={`text-xs text-nowrap font-medium ${index === 0 ? "text-white" : "text-(--muted-text-color)"}`}>
+                    <span className={`text-xs w-full text-center text-wrap wrap-break-word font-medium ${index === 0 ? "text-white" : "text-(--muted-text-color)"}`}>
                         {props.weatherCodes[item.weather_code].weather}
                     </span>
 

@@ -21,7 +21,7 @@ const Center = (props) => {
     };
 
     return (
-        <div className='w-dvw h-fit flex flex-col lg:flex-row relative overflow-x-hidden p-2 gap-2'>
+        <div className='w-dvw h-fit flex flex-col lg:flex-row relative overflow-hidden p-2 gap-2'>
             <div>
                 <WeatherCard
                     location={props.location}
@@ -30,7 +30,7 @@ const Center = (props) => {
                 />
             </div>
 
-            <div className=' h-fit lg:w-[calc(100%-392px)] flex flex-col gap-2 lg:h-full'>
+            <div className=' h-fit lg:h-71.5 lg:w-[calc(100%-392px)] flex flex-col gap-2'>
                 <div className='w-full h-fit'>
                     <HourlyForecast
                         weatherCodes={props.weatherCodes}

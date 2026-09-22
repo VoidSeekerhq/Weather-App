@@ -95,8 +95,8 @@ const Header = (props) => {
 
 
     return (
-        <div className='lg:sticky lg:top-0 lg:left-0 lg:z-20'>
-            <div className='flex flex-col lg:flex-row bg-(--surface-color1) w-dvw p-4 justify-between items-center border-b border-(--border-color) shadow-(--box-shadow) transition-colors duration-200 ease-linear gap-4 z-10 sticky top-0 left-0'>
+        <>
+            <div className='flex flex-col lg:flex-row bg-(--surface-color1) w-dvw p-4 justify-between items-center border-b border-(--border-color) shadow-(--box-shadow) transition-colors duration-200 ease-linear gap-4 sticky top-0 left-0 z-50'>
 
 
                 <h1 className="logo lg:w-full text-2xl font-medium text-(--color) transition-colors duration-200 ease-linear">
@@ -124,7 +124,7 @@ const Header = (props) => {
 
             </div>
 
-            <div className='flex items-center justify-center p-2 mt-2 lg:absolute lg:right-0 lg:-top-1 lg:z-20'>
+            <div className='flex items-center justify-center p-2 mt-2 lg:absolute lg:right-0 lg:-top-1 lg:z-50'>
                 <div className="searchbar w-full flex flex-row items-center justify-center bg-(--bg2) rounded-full p-2 border border-(--border-color) gap-2 transition-colors duration-200 ease-linear relative">
                     <svg width="18px" height="18px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="var(--muted-text-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                     <input
@@ -172,7 +172,7 @@ const Header = (props) => {
                     }
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -7,7 +7,7 @@ const WindCompass = () => {
 
     if (!weatherData) {
         return (
-            <div className='flex flex-col items-center justify-center bg-(--surface-color1) rounded-2xl p-3 border border-(--border-color)'>
+            <div className='w-full lg:w-71.5 flex flex-col items-center justify-center bg-(--surface-color1) rounded-2xl p-3 border border-(--border-color)'>
                 <span className='w-full text-(--color) font-medium text-lg mb-3'>
                     Wind
                 </span>
