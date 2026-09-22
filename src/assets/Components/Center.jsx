@@ -2,6 +2,7 @@ import React from 'react'
 import WeatherCard from "./WeatherCard"
 import HourlyForecast from "./HourlyForecast"
 import WindCompass from './WindCompass'
+import SunriseAndSetCard from './SunriseAndSetCard'
 import { useWeather } from '../../context/WeatherContext'
 
 const Center = (props) => {
@@ -36,9 +37,11 @@ const Center = (props) => {
                     />
                 </div>
 
-                <div className='w-full'>
+                <div className='w-full flex flex-col lg:p-0 gap-2 lg:flex-row'>
                     <WindCompass />
+                    <SunriseAndSetCard />
                 </div>
+
             </div>
 
 
