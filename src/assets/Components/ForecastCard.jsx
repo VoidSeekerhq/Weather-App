@@ -41,48 +41,52 @@ const ForecastCard = (props) => {
 
     return (
         <>
-                    <span className='w-full text-(--color) font-medium text-lg my-3 transition-colors duration-200 ease-linear'>Weekly Forecast</span>
+            <span className='w-full text-(--color) font-medium text-lg my-3 transition-colors duration-200 ease-linear'>Weekly Forecast</span>
 
-                    {/* <nav className='w-full transition-colors duration-200 ease-linear bg-(--bg2) p-1 flex flex-row justify-around items-center rounded-full'>
-                        <div className="weekly-pill bg-(--surface-color1) py-2 rounded-full border-(--border-color) w-full text-center transition-colors duration-200 ease-linear cursor-pointer shadow-(--box-shadow)">
-                            <span className='text-(--color) transition-colors duration-200 ease-linear'>Weekly</span>
-                        </div>
+            <ul className='text-sm w-full h-full flex flex-col transition-colors duration-200 ease-linear font-normal gap-5 my-2 mb-2'>
 
-                        <div className="monthly-pill w-full text-center transition-colors duration-200 ease-linear cursor-pointer">
-                            <span className='text-(--muted-text-color) transition-colors duration-200 ease-linear'>Monthly</span>
-                        </div>
-                    </nav> */}
+                {props.weekly.map((item, index) => {
+                    const bar = getTempBar(item);
 
-                    <ul className='text-sm w-full h-full flex flex-col transition-colors duration-200 ease-linear font-normal gap-5 my-2 mb-2'>
+                    return (
+                        <li className='w-full grid grid-cols-[80px_auto_40px_1fr_40px] items-center justify-between transition-colors duration-200 ease-linear' key={getDayName(item.date)}>
+                            <div className='flex flex-col font-medium'>
+                                {(index === 0)
+                                    ? <span className='text-(--color) transition-colors duration-200 ease-linear my-2'>
+                                        Today
+                                    </span>
+                                    : <>
+                                        <span className='text-(--color) transition-colors duration-200 ease-linear'>
+                                            {getDayName(item.date)},
+                                        </span>
+                                        <span className='text-(--muted-text-color) transition-colors duration-200 ease-linear text-xs'>
+                                            {new Date(item.date).toLocaleDateString('en-US', { day: '2-digit', month: 'short', timezone: 'UTC' })}
+                                        </span>
+                                    </>
+                                }
+                            </div>
 
-                        {props.weekly.map((item) => {
-                            const bar = getTempBar(item);
+                            <img className='w-6 h-6' src={props.weatherCodes[item.weather_code].icon} alt={props.weatherCodes[item.weather_code].weather} />
 
-                            return (
-                                <li className='w-full grid grid-cols-[80px_auto_40px_1fr_40px] items-center justify-between transition-colors duration-200 ease-linear' key={getDayName(item.date)}>
-                                    <span className='text-(--color) transition-colors duration-200 ease-linear'>{getDayName(item.date)}</span>
+                            <span className='text-(--color) text-center transition-colors duration-200 ease-linear'>{Math.round(item.temp_min)}°</span>
 
-                                    <img className='w-6 h-6' src={props.weatherCodes[item.weather_code].icon} alt={props.weatherCodes[item.weather_code].weather} />
+                            <div className="bar bg-(--bg2) w-full h-1 rounded-full relative transition-colors duration-200 ease-linear">
+                                <div className="bar-thumb bg-(--thumb) w-5/6 h-full rounded-full relative transition-all duration-200 ease-linear"
+                                    style={{
+                                        left: bar.left,
+                                        width: bar.width
+                                    }}
+                                >
+                                </div>
+                            </div>
 
-                                    <span className='text-(--color) text-center transition-colors duration-200 ease-linear'>{Math.round(item.temp_min)}°</span>
+                            <span className='text-(--color) text-center transition-colors duration-200 ease-linear'>{Math.round(item.temp_max)}°</span>
+                        </li>
+                    )
+                })}
 
-                                    <div className="bar bg-(--bg2) w-full h-1 rounded-full relative transition-colors duration-200 ease-linear">
-                                        <div className="bar-thumb bg-(--thumb) w-5/6 h-full rounded-full relative transition-all duration-200 ease-linear"
-                                            style={{
-                                                left: bar.left,
-                                                width: bar.width
-                                            }}
-                                        >
-                                        </div>
-                                    </div>
-
-                                    <span className='text-(--color) text-center transition-colors duration-200 ease-linear'>{Math.round(item.temp_max)}°</span>
-                                </li>
-                            )
-                        })}
-
-                    </ul>
-                </>
+            </ul>
+        </>
     )
 }
 

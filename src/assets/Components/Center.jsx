@@ -3,6 +3,7 @@ import WeatherCard from "./WeatherCard"
 import HourlyForecast from "./HourlyForecast"
 import WindCompass from './WindCompass'
 import SunriseAndSetCard from './SunriseAndSetCard'
+import Highlights from './Highlights'
 import { useWeather } from '../../context/WeatherContext'
 
 const Center = (props) => {
@@ -21,7 +22,7 @@ const Center = (props) => {
     };
 
     return (
-        <div className='w-dvw h-fit flex flex-col lg:flex-row relative overflow-hidden p-2 gap-2'>
+        <div className='w-dvw h-fit flex flex-col lg:flex-row relative overflow-hidden p-4 gap-4'>
             <div>
                 <WeatherCard
                     location={props.location}
@@ -30,16 +31,17 @@ const Center = (props) => {
                 />
             </div>
 
-            <div className=' h-fit lg:h-71.5 lg:w-[calc(100%-392px)] flex flex-col gap-2'>
+            <div className=' h-fit lg:h-71.5 lg:w-[calc(100%-400px)] flex flex-col gap-4'>
                 <div className='w-full h-fit'>
                     <HourlyForecast
                         weatherCodes={props.weatherCodes}
                     />
                 </div>
 
-                <div className='w-full flex flex-col lg:p-0 gap-2 lg:flex-row'>
+                <div className='w-full flex flex-col lg:p-0 gap-4 lg:justify-between lg:flex-row'>
                     <WindCompass />
                     <SunriseAndSetCard />
+                    <Highlights />
                 </div>
 
             </div>
