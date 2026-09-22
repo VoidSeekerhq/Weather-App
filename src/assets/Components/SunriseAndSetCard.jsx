@@ -20,7 +20,7 @@ const SunriseAndSetCard = () => {
     }
 
     const getSunPosition = (sunrise, sunset) => {
-        const now = new Date("2026-09-22T18:33");
+        const now = new Date();
 
         const sunriseTime = new Date(sunrise);
         const sunsetTime = new Date(sunset);
